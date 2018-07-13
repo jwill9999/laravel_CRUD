@@ -13,3 +13,11 @@ Route::put('/post/edit/{post}', 'PostController@update');
 Route::post('/comments/create/{post}', 'CommentController@store');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
