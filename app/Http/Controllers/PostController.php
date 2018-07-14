@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use DB;
 
 class PostController extends Controller
 {
@@ -19,8 +20,23 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->get();
-        return view('posts.index', compact('posts'));
+        /*
+        EXAMPLES
+
+            $posts = Post::all();
+            return Post::where('title', 'Post Two')->get();
+            $posts = DB::select('SELECT * FROM posts');
+            $posts = Post::orderBy('title','desc')->take(1)->get();
+            $posts = Post::orderBy('title','desc')->get(); 
+
+            $posts = Post::latest()->get();
+            return view('posts.index', compact('posts'));
+            $posts = Post::orderBy('created_at','asc')->paginate(10);
+
+        */
+
+        $posts = Post::orderBy('created_at','desc')->paginate(10);
+        return view('posts.index')->with('posts', $posts);
     }
 
     /**
@@ -41,7 +57,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate(request(), [
+        $this->validate($request, [
             'title' => 'required|',
             'body' => 'required',
         ]);
@@ -57,7 +73,7 @@ class PostController extends Controller
         $post->save();
 
         // redirect to home page on save
-        return redirect('/');
+        return redirect('/')->with('success', 'Post Created');
     }
 
     /**
@@ -80,7 +96,14 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+
+        
+       
+        return view('posts.edit')->with('post', $post);
+        
+
+        
     }
 
     /**
@@ -92,7 +115,27 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        // validation
+        $this->validate($request, [
+            'title' => 'required|',
+            'body' => 'required',
+        ]);
+
+        //find post
+
+        $post = Post::find($id);
+
+        // reset variables with updated values
+
+        $post->title = request('title');
+        $post->body = request('body');
+
+      
+
+        $post->save();
+
+        return redirect('/');
+      
     }
 
     /**

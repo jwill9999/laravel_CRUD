@@ -1,5 +1,5 @@
 <div class="col-md-8 my-5">
-    @include('../partials/error')   
+    @include('../partials/messages')   
 <form class="my-5" method="POST" action="/comments/create/{{$post->id}}">
         @csrf                     
         <div class="form-group">

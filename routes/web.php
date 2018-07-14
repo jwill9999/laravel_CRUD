@@ -8,7 +8,11 @@ Route::post('/posts', 'PostController@store');
 
 Route::get('/post/{post}', 'PostController@show');
 
-Route::put('/post/edit/{post}', 'PostController@update');
+Route::get('/post/edit/{id}', 'PostController@edit');
+
+Route::put('/posts/{id}', 'PostController@update');
+
+
 
 Route::post('/comments/create/{post}', 'CommentController@store');
 
