@@ -12,7 +12,7 @@ Route::get('/post/edit/{id}', 'PostController@edit');
 
 Route::put('/posts/{id}', 'PostController@update');
 
-
+Route::delete('/post/delete/{id}', 'PostController@destroy');
 
 Route::post('/comments/create/{post}', 'CommentController@store');
 

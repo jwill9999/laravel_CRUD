@@ -9,8 +9,11 @@
     <h1 class="mb-5">{{$post->title}}</h1>
     <h4>{{$post->body}}</h4>
     <div class="my-5">
-        <a name="editpost" id="" class="btn btn-lg btn-warning   " href="/post/edit/{{$post->id}}" role="button">Edit Post</a>
-        <a name="deletepost" id="" class="btn btn-lg btn-danger   " href="/post/delete/{{$post->id}}" role="button">Delete Post</a>
+        <a name="editpost" id="" class="btn btn-lg btn-warning" href="/post/edit/{{$post->id}}" role="button">Edit Post</a>
+        {!! Form::open(['action' => [ 'PostController@destroy', $post->id], 'method' => 'POST'  ]) !!}
+            {{Form::hidden('_method', 'DELETE')}}
+            {{Form::submit('Delete', ['class' => 'btn btn-lg btn-danger float-right mr-4'])}}
+        {!! Form::close() !!}
     </div>
     @include('../partials/comments')
     @include('../partials/commentForm')
