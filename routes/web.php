@@ -16,12 +16,6 @@ Route::delete('/post/delete/{id}', 'PostController@destroy');
 
 Route::post('/comments/create/{post}', 'CommentController@store');
 
-
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index');

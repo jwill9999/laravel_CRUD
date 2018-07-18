@@ -17,7 +17,7 @@ class PostController extends Controller
     public function __construct()
     {
 
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['index', 'show']);
     }
 
     /*===============================================================
@@ -42,7 +42,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(4);
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -96,6 +96,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+        
         return view('posts.show', compact('post'));
     }
 
