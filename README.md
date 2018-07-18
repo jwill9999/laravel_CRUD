@@ -9,6 +9,25 @@
 
 ```
 
+### KEY FEATURES
+
+> Auth / Login / Password Reset
+
+> Guarding
+
+> CRUD application
+
+> Eloquent
+
+> Blade templating
+
+> Dashboard intergration
+
+> Laravel Collective Forms
+
+> Comments section
+
+
 ### IMPORTANT
 
 > Install dependencies
